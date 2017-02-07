@@ -1,0 +1,11 @@
+homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
+crawl:
+    path:     /crawl
+    defaults: { _controller: AppBundle:Default:crawl }
+
+contact:
+    path:     /contact
+    defaults: { _controller: AppBundle:Default:contact }

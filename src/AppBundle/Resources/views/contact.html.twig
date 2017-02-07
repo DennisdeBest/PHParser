@@ -1,0 +1,21 @@
+{% extends 'AppBundle::page.html.twig' %}
+{% block title %}
+    {{ parent() }}Contact
+{% endblock %}
+{% block content %}
+    {% for flashmessage in app.session.flashBag.get('email_error') %}
+        <div class="alert alert-danger">
+        {{ flashmessage }}
+        </div>
+    {% endfor %}
+    {% for flashmessage in app.session.flashBag.get('email_success') %}
+        <div class="alert alert-success">
+        {{ flashmessage }}
+        </div>
+    {% endfor %}
+    <h1>Contact</h1>
+    <div id="contactForm">
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+        {{ form(form) }}
+    </div>
+{% endblock %}

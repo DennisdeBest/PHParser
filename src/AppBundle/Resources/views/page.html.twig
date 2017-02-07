@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%  block title %}PHParser - {% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+        'bundles/app/css/main.css'
+        'bundles/app/css/bootstrap.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link href='https://fonts.googleapis.com/css?family=Raleway|Ubuntu|Copse' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        {% endstylesheets %}
+    {%  endblock stylesheets %}
+    {% block javascript %}
+        <script
+                src="https://code.jquery.com/jquery-2.2.3.min.js"
+                integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        {% javascripts
+        'bundles/app/js/main.js'
+        output='js/compiled/app.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+</head>
+<body>
+<div id="userBanner" class="top">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <span id="username">{{ app.user.username }}</span>
+        <span class="userButton button"> <a href="{{ path('fos_user_security_logout') }}">
+                    Logout </a></span>
+    {% endif %}
+</div>
+<div id="pageContainer">
+    <menu>
+        {% embed "AppBundle::menu.html.twig" %}
+        {% endembed %}
+    </menu>
+
+    <div id="content">
+        {% block content %}
+            {% block fos_content %}
+                {% block fos_user_content %}{% endblock %}
+            {% endblock %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <hr>
+        <i class="fa fa-mobile-phone"></i> 0629703682<br>
+        ©2017 phparser. All rights reserved<br>
+    </footer>
+
+</div>
+
+
+
+
+</body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-84293419-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+</html>

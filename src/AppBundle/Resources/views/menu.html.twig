@@ -1,0 +1,9 @@
+
+<h1 class="title">PHParser</h1>
+<hr>
+{% set route = app.request.attributes.get('_route') %}
+<ul>
+    <li {{ route == 'homepage' ? 'class="active"' }}><a href="{{ path('homepage') }}">Home</a></li>
+    <li {{ route == 'contact' ? 'class="active"' }}><a href="{{ path('contact') }}">Contact</a></li>
+</ul>
+<hr>

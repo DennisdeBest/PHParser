@@ -1,0 +1,15 @@
+{% extends 'AppBundle::page.html.twig' %}
+{% block title %}
+    {{ parent() }}Home
+{% endblock %}
+{% block content %}
+<div id="homePageContainer">
+    <h2>PHParser</h2>
+</div>
+    {% block javascripts %}
+        {{- parent() -}}
+        {% javascripts "@AppBundle/Resources/public/js/imageHover.js"  %}
+        <script type="text/javascript" src="{{ asset_url }}" ></script>
+        {% endjavascripts %}
+    {% endblock %}
+{% endblock %}

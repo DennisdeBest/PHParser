@@ -1,0 +1,17 @@
+{% extends 'AppBundle::page.html.twig' %}
+{% block title %}
+    {{ parent() }}Crawl
+{% endblock %}
+{% block content %}
+    {% for flashmessage in app.session.flashBag.get('email_error') %}
+        <div class="alert alert-danger">
+        {{ flashmessage }}
+        </div>
+    {% endfor %}
+    {% for flashmessage in app.session.flashBag.get('email_success') %}
+        <div class="alert alert-success">
+        {{ flashmessage }}
+        </div>
+    {% endfor %}
+    {{ crawlText }}
+{% endblock %}

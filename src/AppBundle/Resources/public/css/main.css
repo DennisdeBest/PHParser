@@ -1,0 +1,125 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+menu ul {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 5px 0px;
+    color: #0d6aad;
+}
+
+menu ul li {
+    display: inline;
+    list-style: none;
+    margin: auto;
+}
+menu ul li a {
+    color: #0d6aad;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+menu ul li a:hover {
+    color: #00a7d0;
+}
+menu {
+    width: 100%;
+    padding: 0;
+}
+
+menu li.active a {
+    color:#00a7d0 !important;
+    font-style: italic;
+}
+
+hr {
+    border: 0 !important;
+    height: 1px !important;
+    background: #0d6aad !important;
+    background-image: linear-gradient(to right, #ccc, #0d6aad, #ccc) !important;
+}
+#pageContainer {
+    max-width: 800px;
+    margin: auto;
+}
+#userBanner {
+    position: absolute;
+}
+
+#homePageContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+#homePageContainer img {
+    width: 30%;
+    height: auto;
+    box-sizing: border-box;
+    border-radius: 5000px;
+    min-width: 200px;
+    border: 1px solid #0d6aad;
+    box-shadow: 7px 7px 5px #A0C4D0;
+}
+#homePageContainer .homePageElement {
+    width: 30%;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+.showcaseImagesContainer img {
+    width: 30%;
+    height: 1%;
+    margin: 5px;
+    min-width: 200px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: 1px solid #0d6aad;
+    box-shadow: 7px 7px 5px #A0C4D0;
+}
+
+.showcaseImagesContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+h1 {
+    text-align: center;
+    font-family: 'Copse', serif;
+}
+h1.title {
+    margin-bottom: -8px;
+}
+
+.logo {
+    width: 72px;
+    display: inline;
+}
+
+footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.imageOverlay{
+    position: relative;
+    top: -115px;
+    left: 40px;
+    font-size: 1.8em;
+    color: #062f4d;
+    text-decoration: none;
+    display: hidden;
+    z-index: -1000;
+    text-shadow: #001a35 7px 7px 5px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 0;
+    padding: 0;
+}
+.removemargin{
+    margin-bottom: -55px;
+}

@@ -1,0 +1,5 @@
+easy_admin:
+    site_name: 'PHParser'
+    design:
+        menu:
+            - { entity: 'User', icon: 'users' }

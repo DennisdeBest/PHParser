@@ -1,0 +1,7 @@
+easy_admin:
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            label: 'Users'
+            form:
+                fields: ['enabled', 'username', 'email', 'roles', 'lastLogin']
