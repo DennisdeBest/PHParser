@@ -9,3 +9,7 @@ crawl:
 contact:
     path:     /contact
     defaults: { _controller: AppBundle:Default:contact }
+
+scrap:
+    path:     /scrap
+    defaults: {_controller: AppBundle:Default:scrap }

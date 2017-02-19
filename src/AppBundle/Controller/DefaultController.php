@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Contact;
+use AppBundle\Entity\Url;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,16 +53,48 @@ class DefaultController extends Controller
         return $this->render('AppBundle::contact.html.twig', array('form' => $form->createView()));
     }
 
-    public function crawlAction(){
+    public function crawlAction($link = "http://www.sudouest.com")
+    {
         $client = new Client();
-        $crawler = $client->request('GET', 'http://www.sudouest.fr');
+        if(!$crawler = $client->request('GET', $link)){
+           return false;
+        };
         //$crawlerLinks = $crawler->links();
-        $test = $crawler->filter('.premium a');
+        $test = $crawler->filter('body a');
         $crawlerLinks = $test->links();
-        foreach($crawlerLinks as $link){
+        foreach ($crawlerLinks as $link) {
             $uri = $link->getUri();
+            $repo = $this->getDoctrine()->getRepository('AppBundle:Url');
+            if ($repo->findOneByLink($uri)) {
+                continue;
+            }
+            $url = new Url();
+            $url->setLink($uri);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($url);
+            $em->flush();
         }
-        return $this->render('AppBundle::crawl.html.twig', array('crawlText' => $crawler->text()));
+        return true;
+    }
+
+    public function scrapAction()
+    {
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Url');
+        $links = $repo->getUnprocessed();
+        $count = 0;
+        foreach ($links as $link) {
+            if ($count > 1000) {
+                break;
+            }
+            $em = $this->getDoctrine()->getManager();
+            if(!$this->crawlAction($link['link'])){
+                continue;
+            };
+            $url = $em->getRepository('AppBundle:Url')->find($link['id']);
+            $url->setProcessed(1);
+            $em->flush();
+            $count++;
+        }
     }
 }
 
